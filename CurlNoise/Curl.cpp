@@ -353,8 +353,6 @@ namespace CurlNoise
 		s_Settings = settings;
 	}
 
-
-#if USING_UNITY
 	//-------------------------------------------------------------------------------------------------------------	
 	using CurlNoise::float3;
 	float3 Vector3ToFloat3(const Vector3& v)
@@ -406,7 +404,6 @@ namespace CurlNoise
 		s_Settings.m_Lacunarity = lacunarity;
 		s_Settings.m_Persistence = persistence;
 	}
-#endif
 
 	//-------------------------------------------------------------------------------------------------------------
 	// Volume
