@@ -1,13 +1,9 @@
 #pragma once
 
 #include "vmath.hpp" // PORTME: vmath can be replaced with IG's internal math equivalents
-#define USING_UNITY 0
 
-#if USING_UNITY
-#define DLLEXPORT __declspec(dllexport)
-#else
 #define DLLEXPORT 
-#endif
+
 
 namespace CurlNoise
 {
@@ -69,32 +65,20 @@ namespace CurlNoise
 		float			m_Persistence = 0.5f;		
 	};
 
-#if USING_UNITY
-	extern "C"
-	{		
-		struct float3
-		{
-			float val[3];		
-		};
-		
-		DLLEXPORT float3 ComputeCurlBruteForce(Vector3 wsPos, Volume *pColliders, unsigned int length);
+	struct float3
+	{
+		float val[3];		
+	};
+	
+	float3 ComputeCurlBruteForce(Vector3 wsPos, Volume *pColliders, unsigned int length);
 
-		DLLEXPORT float3 ComputeCurlNoBoundaries(Vector3 wsPos);
+	float3 ComputeCurlNoBoundaries(Vector3 wsPos);
 
-		DLLEXPORT float3 ComputeCurlNonBruteForce(Vector3 wsPos, Volume *pColliders, unsigned int length);
+	float3 ComputeCurlNonBruteForce(Vector3 wsPos, Volume *pColliders, unsigned int length);
 
-		DLLEXPORT void SetCurlSettings(	bool bCheapGradient, 
-										float frequency, 
-										unsigned int numOctaves, 
-										float lacunarity, 
-										float persistence);
-
-	}
-#else
-	// API for visual effect system to use
-	Vector3 ComputeCurl(Vector3 wsPos, const Volume *pColliders, unsigned int length);
-	Vector3 ComputeCurlWithoutObstacles(Vector3 wsPos);
-	void SetCurlSettings(const CurlSettings& settings);
-#endif
-
+	void SetCurlSettings(	bool bCheapGradient, 
+				float frequency, 
+				unsigned int numOctaves, 
+				float lacunarity, 
+				float persistence);
 };
