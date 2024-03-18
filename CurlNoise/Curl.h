@@ -1,7 +1,7 @@
 #pragma once
 
 #include "vmath.hpp" // PORTME: vmath can be replaced with IG's internal math equivalents
-#define USING_UNITY 1
+#define USING_UNITY 0
 
 #if USING_UNITY
 #define DLLEXPORT __declspec(dllexport)
