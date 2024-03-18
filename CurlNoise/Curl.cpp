@@ -11,40 +11,6 @@
 #include <string>
 using namespace std;
 
-#if USING_UNITY
-// Allow writing to the Unity debug console from inside DLL land.
-extern "C"
-{
-	void(_stdcall*debugLog)(const char*) = NULL;
-
-	__declspec(dllexport) void LinkDebug(void(_stdcall*d)(const char *))
-	{
-		debugLog = d;
-	}
-}
-
-void DebugLog(const char* str)
-{
-	//#   if _DEBUG
-	if (debugLog) debugLog(str);
-	//#   endif
-}
-
-
-void DebugLog(string str)
-{
-	//#   if _DEBUG
-	if (debugLog) debugLog(str.c_str());
-	//#   endif
-}
-
-using namespace Vectormath::Aos;
-string to_string(Vector3 v)
-{
-	string s(to_string(v.getX()) + "," + to_string(v.getY()) + "," + to_string(v.getZ()));
-	return s;
-}
-#else
 // do nothing
 void DebugLog(const char* str) {}
 
@@ -52,7 +18,6 @@ void DebugLog(string str) {}
 
 using namespace Vectormath::Aos;
 string to_string(Vector3 v) {}
-#endif
 
 //-------------------------------------------------------------------------------------------------------------
 namespace // unnamed to hide implementation functions & separate them from API code
