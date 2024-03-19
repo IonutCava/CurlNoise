@@ -12,12 +12,12 @@
 using namespace std;
 
 // do nothing
-void DebugLog(const char* str) {}
+void DebugLog([[maybe_unused]] const char* str) {}
 
-void DebugLog(string str) {}
+void DebugLog([[maybe_unused]] string str) {}
 
 using namespace Vectormath::Aos;
-string to_string(Vector3 v) {}
+//string to_string(Vector3 v) {}
 
 //-------------------------------------------------------------------------------------------------------------
 namespace // unnamed to hide implementation functions & separate them from API code
